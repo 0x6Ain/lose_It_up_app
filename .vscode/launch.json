@@ -1,0 +1,28 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "lose_it_up_app",
+      "request": "launch",
+      "type": "dart",
+      "preLaunchTask": "replace-env-dev"
+    },
+    {
+      "name": "lose_it_up_app (profile mode)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile",
+      "preLaunchTask": "replace-env-stage"
+    },
+    {
+      "name": "lose_it_up_app (release mode)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release",
+      "preLaunchTask": "replace-env-prod"
+    }
+  ]
+}
