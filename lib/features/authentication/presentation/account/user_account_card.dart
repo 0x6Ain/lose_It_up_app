@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lose_it_up_app/constants/app_sizes.dart';
-import 'package:lose_it_up_app/constants/dummy_data.dart';
+import 'package:lose_it_up_app/dummy/dummy_data.dart';
 
 import 'package:lose_it_up_app/localization/string_hardcoded.dart';
 

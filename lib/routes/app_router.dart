@@ -4,12 +4,15 @@ import 'package:lose_it_up_app/app.dart';
 import 'package:lose_it_up_app/common/entire_layout/scaffold_with_nested_navigation.dart';
 import 'package:lose_it_up_app/features/authentication/presentation/account/account_screen.dart';
 import 'package:lose_it_up_app/features/authentication/presentation/sign_in/sign_in_screen.dart';
+import 'package:lose_it_up_app/features/authentication/settings/presenatation/setting_screen.dart';
+import 'package:lose_it_up_app/features/meals/presentation/meal_list_screen.dart';
 import 'package:lose_it_up_app/routes/not_found_screen.dart';
 
 enum AppRoute {
   home,
   account,
   signIn,
+  setting,
   meal,
 }
 
@@ -38,6 +41,7 @@ final goRouter = GoRouter(
             // top route inside branch
             GoRoute(
               path: '/',
+              name: AppRoute.home.name,
               pageBuilder: (context, state) => const NoTransitionPage(
                 child: HomeScreen(),
               ),
@@ -50,9 +54,10 @@ final goRouter = GoRouter(
           routes: [
             // top route inside branch
             GoRoute(
-              path: '/signIn',
+              path: '/meals',
+              name: AppRoute.meal.name,
               pageBuilder: (context, state) => const NoTransitionPage(
-                child: SignInScreen(),
+                child: MealListScreen(),
               ),
             ),
           ],
@@ -63,11 +68,27 @@ final goRouter = GoRouter(
           routes: [
             // top route inside branch
             GoRoute(
-              path: '/profile',
-              pageBuilder: (context, state) => const NoTransitionPage(
-                child: AccountScreen(),
-              ),
-            ),
+                path: '/account',
+                name: AppRoute.account.name,
+                pageBuilder: (context, state) => const NoTransitionPage(
+                      child: AccountScreen(),
+                    ),
+                routes: [
+                  GoRoute(
+                    path: 'signIn',
+                    name: AppRoute.signIn.name,
+                    pageBuilder: (context, state) => const NoTransitionPage(
+                      child: SignInScreen(),
+                    ),
+                  ),
+                  GoRoute(
+                    path: 'setting',
+                    name: AppRoute.setting.name,
+                    pageBuilder: (context, state) => const NoTransitionPage(
+                      child: SettingScreen(),
+                    ),
+                  ),
+                ]),
           ],
         ),
       ],
