@@ -16,11 +16,13 @@ class ScaffoldWithNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       body: body,
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: onDestinationSelected,
         selectedIndex: selectedIndex,
         indicatorColor: Colors.transparent,
+        backgroundColor: Colors.black.withOpacity(0.9),
         destinations: [
           NavigationDestination(
             label: 'Home'.hardcoded,

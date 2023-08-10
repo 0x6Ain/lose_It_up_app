@@ -22,6 +22,7 @@ class ScaffoldWithNavigationRail extends StatelessWidget {
             selectedIndex: selectedIndex,
             onDestinationSelected: onDestinationSelected,
             indicatorColor: Colors.transparent,
+            backgroundColor: Colors.transparent.withOpacity(0.3),
             labelType: NavigationRailLabelType.all,
             destinations: [
               NavigationRailDestination(

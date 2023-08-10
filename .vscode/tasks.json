@@ -5,7 +5,11 @@
       "label": "replace-env-dev",
       "command": "./scripts/replace-env.sh",
       "args": ["dev"],
-      "type": "shell"
+      "type": "shell",
+      "presentation": {
+        "reveal": "silent",
+        "revealProblems": "onProblem"
+      }
     },
     {
       "label": "replace-env-stage",
