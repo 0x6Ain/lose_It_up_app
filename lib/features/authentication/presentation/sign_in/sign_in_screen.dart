@@ -6,6 +6,7 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(title: const Text('SignInScreen')),
       body: const Center(child: Text('Not Implemented')),
     );
