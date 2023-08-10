@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lose_it_up_app/app.dart';
+import 'package:lose_it_up_app/common/entire_layout/scaffold_with_nested_navigation.dart';
 import 'package:lose_it_up_app/features/authentication/presentation/account/account_screen.dart';
 import 'package:lose_it_up_app/features/authentication/presentation/sign_in/sign_in_screen.dart';
-import 'package:lose_it_up_app/routes/app_bottom_navigation_bar.dart';
 import 'package:lose_it_up_app/routes/not_found_screen.dart';
 
 enum AppRoute {
@@ -28,7 +28,7 @@ final goRouter = GoRouter(
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
         // the UI shell
-        return AppBottomNavigationBar(navigationShell: navigationShell);
+        return ScaffoldWithNestedNavigation(navigationShell: navigationShell);
       },
       branches: [
         // first branch (A)
@@ -41,13 +41,6 @@ final goRouter = GoRouter(
               pageBuilder: (context, state) => const NoTransitionPage(
                 child: HomeScreen(),
               ),
-              // routes: [
-              //   // child route
-              //   GoRoute(
-              //     path: 'details',
-              //     builder: (context, state) => DetailsScreen(label: 'A'),
-              //   ),
-              // ],
             ),
           ],
         ),
@@ -61,13 +54,6 @@ final goRouter = GoRouter(
               pageBuilder: (context, state) => const NoTransitionPage(
                 child: SignInScreen(),
               ),
-              // routes: [
-              //   // child route
-              //   GoRoute(
-              //     path: 'details',
-              //     builder: (context, state) => DetailsScreen(label: 'B'),
-              //   ),
-              // ],
             ),
           ],
         ),
@@ -81,13 +67,6 @@ final goRouter = GoRouter(
               pageBuilder: (context, state) => const NoTransitionPage(
                 child: AccountScreen(),
               ),
-              // routes: [
-              //   // child route
-              //   GoRoute(
-              //     path: 'details',
-              //     builder: (context, state) => DetailsScreen(label: 'B'),
-              //   ),
-              // ],
             ),
           ],
         ),
