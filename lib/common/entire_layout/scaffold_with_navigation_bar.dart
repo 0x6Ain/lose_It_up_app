@@ -22,7 +22,9 @@ class ScaffoldWithNavigationBar extends StatelessWidget {
         onDestinationSelected: onDestinationSelected,
         selectedIndex: selectedIndex,
         indicatorColor: Colors.transparent,
-        backgroundColor: Colors.black.withOpacity(0.9),
+        //TODO: ThemeMode.system에 따른 backgroundcolor 변경
+        // backgroundColor: ThemeMode.system != ThemeMode.light ? Colors.white : Colors.black,
+        backgroundColor: Colors.white.withOpacity(0.8),
         destinations: [
           NavigationDestination(
             label: 'Home'.hardcoded,

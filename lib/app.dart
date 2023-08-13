@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lose_it_up_app/routes/app_router.dart';
+import 'package:lose_it_up_app/utils/themes.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -7,25 +8,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-        routerConfig: goRouter,
-        debugShowCheckedModeBanner: false,
-        restorationScopeId: 'app',
-        // onGenerateTitle: (BuildContext context) => 'My Shop'.hardcoded,
-        theme: ThemeData(
-          useMaterial3: true,
-          primarySwatch: Colors.grey,
-          appBarTheme: const AppBarTheme(
-            backgroundColor: Colors.black,
-            foregroundColor: Colors.white,
-            elevation: 0,
-          ),
-          elevatedButtonTheme: ElevatedButtonThemeData(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.black, // background (button) color
-              foregroundColor: Colors.white, // foreground (text) color
-            ),
-          ),
-        ));
+      routerConfig: goRouter,
+      debugShowCheckedModeBanner: false,
+      restorationScopeId: 'app',
+      // onGenerateTitle: (BuildContext context) => 'My Shop'.hardcoded,
+      theme: Themes.lightTheme,
+      darkTheme: Themes.darkTheme,
+      themeMode: ThemeMode.system,
+    );
   }
 }
 
@@ -55,7 +45,16 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text('Home'),
+        title: const Text(ThemeMode.system == ThemeMode.light ? 'light' : 'dark'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.add_location_sharp),
+            onPressed: () {
+              print(ThemeMode.system);
+              setState(() {});
+            },
+          )
+        ],
         // backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       ),
       body: Scrollbar(
