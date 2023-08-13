@@ -1,21 +1,21 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'user.freezed.dart';
+part 'user.g.dart';
+
 /// Simple class representing the user UID and email.
-class User {
-  const User({
-    required this.uid,
-    required this.name,
-    this.email,
-    this.image,
-    this.introduction,
-    this.posts = 0,
-    this.follower = 0,
-    this.following = 0,
-  });
-  final String uid;
-  final String name;
-  final String? image;
-  final String? email;
-  final String? introduction;
-  final int posts;
-  final int follower;
-  final int following;
+@freezed
+class User with _$User {
+  factory User({
+    required String uid,
+    required String email,
+    String? name,
+    String? image,
+    String? introduction,
+    @Default(0) int? posts,
+    @Default(0) int? follower,
+    @Default(0) int? following,
+  }) = _User;
+
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }

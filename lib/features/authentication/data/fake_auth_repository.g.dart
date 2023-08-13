@@ -21,7 +21,7 @@ final authRepositoryProvider = AutoDisposeProvider<FakeAuthRepository>.internal(
 );
 
 typedef AuthRepositoryRef = AutoDisposeProviderRef<FakeAuthRepository>;
-String _$authStateChangesHash() => r'a96bdca9138a03d0ca728c3e3a9b2fced10c37b9';
+String _$authStateChangesHash() => r'f6de9b9030f6480e0eadedf614cde390c5184785';
 
 /// See also [authStateChanges].
 @ProviderFor(authStateChanges)

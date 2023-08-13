@@ -9,7 +9,7 @@ class UserAccountWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = kUser[0];
+    final user = kUser;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -49,7 +49,7 @@ class UserAccountWidget extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Text(user.name),
+                    Text(user.name ?? 'user-${user.uid}'),
                   ],
                 ),
                 gapW32,

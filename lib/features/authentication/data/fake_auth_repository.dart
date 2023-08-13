@@ -18,18 +18,17 @@ class FakeAuthRepository extends AuthRepository {
   final _authState = InMemoryStore<User?>(null);
 
   // List to keep track of all user accounts
-  final List<User> _users = kUser;
-
+  final List<User> _users = [kUser];
+  User? get currentUser => _authState.value;
   @override
   Future<User?> fetchUser() {
-    debugPrint('fetchUser-in fakeAuthRepo');
     delay(isDelay);
-    return Future.value(kUser[0]);
+    _authState.value = kUser;
+    return Future.value(kUser);
   }
 
   @override
-  Stream<User?> watchUser() {
-    debugPrint('watchUser-in fakeAuthRepo');
+  Stream<User?> authStateChanges() {
     return _authState.stream;
   }
 
@@ -40,7 +39,7 @@ class FakeAuthRepository extends AuthRepository {
 
     for (final user in _users) {
       if (user.email == email) {
-        if (password == '1234') {
+        if (password == '12341234') {
           _authState.value = user;
           return;
         } else {
@@ -73,7 +72,10 @@ class FakeAuthRepository extends AuthRepository {
       throw WeakPasswordException();
     }
     // create new user
-    final newUser = User(uid: '${_users.length + 1}', name: 'user-${_users.length + 1}');
+    final newUser = User(
+      uid: email.split('').reversed.join(),
+      email: email,
+    );
     _users.add(newUser);
 
     _authState.value = newUser;
@@ -92,5 +94,5 @@ FakeAuthRepository authRepository(AuthRepositoryRef ref) {
 @riverpod
 Stream<User?> authStateChanges(AuthStateChangesRef ref) {
   final authRepository = ref.watch(authRepositoryProvider);
-  return authRepository.watchUser();
+  return authRepository.authStateChanges();
 }
