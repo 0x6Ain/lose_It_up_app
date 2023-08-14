@@ -5,9 +5,11 @@ class BaseTextButton extends StatelessWidget {
   const BaseTextButton({
     super.key,
     required this.text,
+    required this.isLoading,
     this.onPressed,
   });
   final String text;
+  final bool isLoading;
   final VoidCallback? onPressed;
 
   @override
@@ -21,14 +23,16 @@ class BaseTextButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(16.0)),
       child: TextButton(
         onPressed: onPressed,
-        child: Text(
-          text,
-          style: Theme.of(context)
-              .textTheme
-              .titleLarge!
-              .copyWith(color: Theme.of(context).colorScheme.primary),
-          textAlign: TextAlign.center,
-        ),
+        child: isLoading
+            ? const CircularProgressIndicator()
+            : Text(
+                text,
+                style: Theme.of(context)
+                    .textTheme
+                    .titleLarge!
+                    .copyWith(color: Theme.of(context).colorScheme.primary),
+                textAlign: TextAlign.center,
+              ),
       ),
     );
   }

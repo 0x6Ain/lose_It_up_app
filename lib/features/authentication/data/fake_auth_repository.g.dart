@@ -6,11 +6,11 @@ part of 'fake_auth_repository.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$authRepositoryHash() => r'0333acbd4dee185ca89b50b96bf7ab799eecdc0a';
+String _$authRepositoryHash() => r'f94389a2b4b189c4aeaf4b993818ca745215d122';
 
 /// See also [authRepository].
 @ProviderFor(authRepository)
-final authRepositoryProvider = AutoDisposeProvider<FakeAuthRepository>.internal(
+final authRepositoryProvider = Provider<FakeAuthRepository>.internal(
   authRepository,
   name: r'authRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -20,12 +20,12 @@ final authRepositoryProvider = AutoDisposeProvider<FakeAuthRepository>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef AuthRepositoryRef = AutoDisposeProviderRef<FakeAuthRepository>;
-String _$authStateChangesHash() => r'f6de9b9030f6480e0eadedf614cde390c5184785';
+typedef AuthRepositoryRef = ProviderRef<FakeAuthRepository>;
+String _$authStateChangesHash() => r'5ffc305cc4e8a1dfe627d4476fbcf1d65f9af66c';
 
 /// See also [authStateChanges].
 @ProviderFor(authStateChanges)
-final authStateChangesProvider = AutoDisposeStreamProvider<User?>.internal(
+final authStateChangesProvider = StreamProvider<User?>.internal(
   authStateChanges,
   name: r'authStateChangesProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -35,6 +35,6 @@ final authStateChangesProvider = AutoDisposeStreamProvider<User?>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef AuthStateChangesRef = AutoDisposeStreamProviderRef<User?>;
+typedef AuthStateChangesRef = StreamProviderRef<User?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member

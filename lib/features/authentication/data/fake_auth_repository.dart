@@ -84,14 +84,14 @@ class FakeAuthRepository extends AuthRepository {
   void dispose() => _authState.close();
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 FakeAuthRepository authRepository(AuthRepositoryRef ref) {
   final auth = FakeAuthRepository();
   ref.onDispose(() => auth.dispose());
   return auth;
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 Stream<User?> authStateChanges(AuthStateChangesRef ref) {
   final authRepository = ref.watch(authRepositoryProvider);
   return authRepository.authStateChanges();

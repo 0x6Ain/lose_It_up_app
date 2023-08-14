@@ -5,7 +5,7 @@ class Themes {
   Color lightSecondaryColor = Colors.black;
   Color dartPrimaryColor = Colors.black;
   Color darkSecondaryColor = Colors.white;
-  Color accentColor = Colors.purple;
+  Color accentColor = Colors.blueAccent;
 
   static ThemeData lightTheme = ThemeData(
     primaryColor: ThemeData.light().scaffoldBackgroundColor,
@@ -14,8 +14,7 @@ class Themes {
       foregroundColor: _instance.lightSecondaryColor,
     ),
     colorScheme: const ColorScheme.light().copyWith(
-      primary: _instance.lightPrimaryColor,
-      secondary: _instance.lightSecondaryColor,
+      primary: _instance.accentColor,
     ),
   );
 
