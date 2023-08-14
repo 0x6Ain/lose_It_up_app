@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lose_it_up_app/routes/app_router.dart';
+import 'package:lose_it_up_app/utils/theme_state.dart';
 import 'package:lose_it_up_app/utils/themes.dart';
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final themeState = ref.watch(themeStateProvider);
+
     return MaterialApp.router(
       routerConfig: goRouter,
       debugShowCheckedModeBanner: false,
@@ -14,7 +18,7 @@ class MyApp extends StatelessWidget {
       // onGenerateTitle: (BuildContext context) => 'My Shop'.hardcoded,
       theme: Themes.lightTheme,
       darkTheme: Themes.darkTheme,
-      themeMode: ThemeMode.system,
+      themeMode: themeState,
     );
   }
 }
@@ -46,16 +50,6 @@ class _HomeScreenState extends State<HomeScreen> {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: const Text(ThemeMode.system == ThemeMode.light ? 'light' : 'dark'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.add_location_sharp),
-            onPressed: () {
-              print(ThemeMode.system);
-              setState(() {});
-            },
-          )
-        ],
-        // backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       ),
       body: Scrollbar(
         controller: _controller,

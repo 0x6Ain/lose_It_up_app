@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lose_it_up_app/localization/string_hardcoded.dart';
+import 'package:lose_it_up_app/utils/theme_state.dart';
 
-class ScaffoldWithNavigationBar extends StatelessWidget {
+class ScaffoldWithNavigationBar extends ConsumerWidget {
   const ScaffoldWithNavigationBar({
     super.key,
     required this.body,
@@ -14,7 +16,8 @@ class ScaffoldWithNavigationBar extends StatelessWidget {
   final ValueChanged<int> onDestinationSelected;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final themeState = ref.watch(themeStateProvider);
     return Scaffold(
       extendBody: true,
       body: body,
@@ -22,9 +25,9 @@ class ScaffoldWithNavigationBar extends StatelessWidget {
         onDestinationSelected: onDestinationSelected,
         selectedIndex: selectedIndex,
         indicatorColor: Colors.transparent,
-        //TODO: ThemeMode.system에 따른 backgroundcolor 변경
-        // backgroundColor: ThemeMode.system != ThemeMode.light ? Colors.white : Colors.black,
-        backgroundColor: Colors.white.withOpacity(0.8),
+        backgroundColor: themeState == ThemeMode.dark
+            ? Colors.black.withOpacity(0.8)
+            : Colors.white.withOpacity(0.8),
         destinations: [
           NavigationDestination(
             label: 'Home'.hardcoded,

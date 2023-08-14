@@ -23,7 +23,7 @@ final _shellNavigatorBKey = GlobalKey<NavigatorState>(debugLabel: 'shellB');
 final _shellNavigatorCKey = GlobalKey<NavigatorState>(debugLabel: 'shellC');
 
 final goRouter = GoRouter(
-  initialLocation: '/',
+  initialLocation: '/account/setting',
   navigatorKey: _rootNavigatorKey,
   routes: [
     // Stateful nested navigation based on:

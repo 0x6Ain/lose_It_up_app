@@ -9,19 +9,14 @@ class Themes {
 
   static ThemeData lightTheme = ThemeData(
     primaryColor: ThemeData.light().scaffoldBackgroundColor,
-    colorScheme: const ColorScheme.light().copyWith(
-      primary: _instance.lightPrimaryColor,
-      secondary: _instance.lightSecondaryColor,
-    ),
     appBarTheme: AppBarTheme(
       backgroundColor: _instance.lightPrimaryColor,
       foregroundColor: _instance.lightSecondaryColor,
     ),
-    // textButtonTheme: TextButtonThemeData(
-    //     style: TextButton.styleFrom(
-    //   foregroundColor: _instance.lightPrimaryColor,
-    //   backgroundColor: _instance.lightSecondaryColor,
-    // )),
+    colorScheme: const ColorScheme.light().copyWith(
+      primary: _instance.lightPrimaryColor,
+      secondary: _instance.lightSecondaryColor,
+    ),
   );
 
   static ThemeData darkTheme = ThemeData(
