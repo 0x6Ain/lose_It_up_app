@@ -34,7 +34,6 @@ class _SettingItemCardState extends State<SettingItemCard> {
             Switch(
               value: widget.isSelected,
               onChanged: (value) {
-                print('setting item changed $value');
                 widget.onPressed(value);
                 // isSelected = !isSelected;
               },

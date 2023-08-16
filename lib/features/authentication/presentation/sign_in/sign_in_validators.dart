@@ -5,8 +5,8 @@ mixin SignInValidators {
   final StringValidator emailSubmitValidator = EmailSubmitRegexValidator();
   final StringValidator passwordSignInSubmitValidator = MinLengthStringValidator(8);
 
-  bool canSubmit(String email) {
-    return emailSubmitValidator.isValid(email);
+  bool canSubmit(String email, String password) {
+    return canSubmitEmail(email) && canSubmitPassword(password);
   }
 
   bool canSubmitEmail(String email) {

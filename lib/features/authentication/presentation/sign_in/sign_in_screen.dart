@@ -9,6 +9,7 @@ import 'package:lose_it_up_app/features/authentication/presentation/sign_in/sign
 import 'package:lose_it_up_app/features/authentication/presentation/sign_in/sign_in_validators.dart';
 import 'package:lose_it_up_app/features/authentication/presentation/sign_in/string_validators.dart';
 import 'package:lose_it_up_app/routes/app_router.dart';
+import 'package:lose_it_up_app/utils/async_value_ui.dart';
 
 class SignInScreen extends ConsumerStatefulWidget {
   const SignInScreen({super.key});
@@ -26,7 +27,8 @@ class _SignInScreenState extends ConsumerState<SignInScreen> with SignInValidato
   String get email => _emailController.text;
   String get password => _passwordController.text;
 
-  var _isSubmitted = false;
+  bool _isSubmitted = false;
+  bool _isButtonEnabled = false;
 
   @override
   void dispose() {
@@ -36,8 +38,10 @@ class _SignInScreenState extends ConsumerState<SignInScreen> with SignInValidato
     super.dispose();
   }
 
-  bool get _isEnableLoginButton {
-    return email.isNotEmpty && password.isNotEmpty;
+  void setButtonState() {
+    setState(() {
+      _isButtonEnabled = canSubmit(email, password);
+    });
   }
 
   Future<void> _submitWithEmailandPassword() async {
@@ -57,6 +61,12 @@ class _SignInScreenState extends ConsumerState<SignInScreen> with SignInValidato
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(signInControllerProvider);
+
+    ref.listen<AsyncValue>(
+      signInControllerProvider,
+      (_, state) => state.showAlertDialogOnError(context),
+    );
+
     return Scaffold(
       appBar: AppBar(title: const Text('SignInScreen')),
       body: Padding(
@@ -74,8 +84,9 @@ class _SignInScreenState extends ConsumerState<SignInScreen> with SignInValidato
                     children: [
                       TextFormField(
                         controller: _emailController,
-                        onTapOutside: (_) => FocusScope.of(context).unfocus(),
-                        decoration: const InputDecoration(
+                        onTapOutside: (_) => _node.unfocus(),
+                        decoration: InputDecoration(
+                          enabled: !state.isLoading,
                           labelText: 'Email Address',
                         ),
                         keyboardType: TextInputType.emailAddress,
@@ -83,17 +94,23 @@ class _SignInScreenState extends ConsumerState<SignInScreen> with SignInValidato
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         textCapitalization: TextCapitalization.none,
                         validator: (email) => _isSubmitted ? emailErrorText(email ?? '') : null,
+                        onChanged: (_) => setButtonState(),
+                        onEditingComplete: () => _node.nextFocus(),
                         inputFormatters: <TextInputFormatter>[
                           ValidatorInputFormatter(editingValidator: EmailEditingRegexValidator()),
                         ],
                       ),
                       TextFormField(
                         controller: _passwordController,
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
+                          enabled: !state.isLoading,
                           labelText: 'Password',
                         ),
                         autocorrect: false,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
                         obscureText: true,
+                        onEditingComplete: () => _node.unfocus(),
+                        onChanged: (_) => setButtonState(),
                         validator: (password) =>
                             _isSubmitted ? passwordErrorText(password ?? '') : null,
                       ),
@@ -102,7 +119,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen> with SignInValidato
                       BaseTextButton(
                         text: 'Login',
                         isLoading: state.isLoading,
-                        onPressed: !_isEnableLoginButton ? null : _submitWithEmailandPassword,
+                        onPressed: !_isButtonEnabled ? null : _submitWithEmailandPassword,
                       ),
                     ],
                   ),
