@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lose_it_up_app/localization/string_hardcoded.dart';
-import 'package:lose_it_up_app/utils/theme_state.dart';
 
 class ScaffoldWithNavigationBar extends ConsumerWidget {
   const ScaffoldWithNavigationBar({
@@ -17,7 +16,6 @@ class ScaffoldWithNavigationBar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final themeState = ref.watch(themeStateProvider);
     return Scaffold(
       extendBody: true,
       body: body,
@@ -25,9 +23,6 @@ class ScaffoldWithNavigationBar extends ConsumerWidget {
         onDestinationSelected: onDestinationSelected,
         selectedIndex: selectedIndex,
         indicatorColor: Colors.transparent,
-        backgroundColor: themeState == ThemeMode.dark
-            ? Colors.black.withOpacity(0.8)
-            : Colors.white.withOpacity(0.8),
         destinations: [
           NavigationDestination(
             label: 'Home'.hardcoded,
