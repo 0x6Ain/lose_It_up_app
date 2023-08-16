@@ -97,13 +97,6 @@ GoRouter goRouter(GoRouterRef ref) {
                         child: AccountScreen(),
                       ),
                   routes: [
-                    // GoRoute(
-                    //   path: 'signIn',
-                    //   name: AppRoute.signIn.name,
-                    //   pageBuilder: (context, state) => const NoTransitionPage(
-                    //     child: SignInScreen(),
-                    //   ),
-                    // ),
                     GoRoute(
                       path: 'setting',
                       name: AppRoute.setting.name,

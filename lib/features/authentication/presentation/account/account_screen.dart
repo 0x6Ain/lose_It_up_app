@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lose_it_up_app/features/authentication/presentation/account/user_account_card.dart';
+import 'package:lose_it_up_app/features/authentication/settings/presenatation/setting_list_modal.dart';
 import 'package:lose_it_up_app/routes/app_router.dart';
 
 class AccountScreen extends StatelessWidget {
@@ -21,36 +22,34 @@ class AccountScreen extends StatelessWidget {
             icon: const Icon(Icons.notifications_outlined),
           ),
           IconButton(
-            onPressed: () => context.goNamed(AppRoute.setting.name),
+            onPressed: () async {
+              final result = await showModalBottomSheet<AppRoute>(
+                  useRootNavigator: true,
+                  useSafeArea: false,
+                  context: context,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(10.0),
+                    ),
+                  ),
+                  builder: (_) => const SettingListModal());
+              if (result != null) {
+                context.goNamed(result.name);
+              }
+            },
             icon: const Icon(Icons.settings),
           )
         ],
       ),
-      body: Scrollbar(
+      body: const Scrollbar(
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const UserAccountWidget(),
-              Container(
+              UserAccountWidget(),
+              SizedBox(
                 height: 600,
-                color: Colors.redAccent,
-                child: const Center(child: Text('Not Implemented')),
+                child: Center(child: Text('Not Implemented')),
               ),
-              ElevatedButton.icon(
-                onPressed: () => context.goNamed(AppRoute.signIn.name),
-                icon: const Icon(Icons.settings),
-                label: const Text('Settings'),
-              ),
-              Container(
-                height: 600,
-                color: Colors.yellowAccent,
-                child: const Center(child: Text('Not Implemented')),
-              ),
-              Container(
-                height: 600,
-                color: Colors.orangeAccent,
-                child: const Center(child: Text('Not Implemented')),
-              )
             ],
           ),
         ),

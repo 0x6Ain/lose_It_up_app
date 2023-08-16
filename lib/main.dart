@@ -11,7 +11,7 @@ Future<void> main() async {
     statusBarColor: Colors.transparent,
     systemNavigationBarColor: Colors.transparent,
   ));
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+  // SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
   // * Entry point of the app
   runApp(
     const ProviderScope(child: MyApp()),

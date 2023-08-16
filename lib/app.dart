@@ -51,34 +51,32 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text(ThemeMode.system == ThemeMode.light ? 'light' : 'dark'),
       ),
-      body: Scrollbar(
-        controller: _controller,
-        thickness: 5, //width of scrollbar
-        radius: const Radius.circular(10), //corner radius of scrollbar
-        child: SingleChildScrollView(
+      body: RefreshIndicator(
+        triggerMode: RefreshIndicatorTriggerMode.anywhere,
+        color: Colors.blue,
+        edgeOffset: 40.0,
+        onRefresh: () async {
+          print('occuer');
+          return;
+        },
+        child: Scrollbar(
           controller: _controller,
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 300,
-                child: Center(child: Text('Graph will be here')),
-              ),
-              Container(
-                height: 600,
-                color: Colors.redAccent,
-                child: const Center(child: Text('Not Implemented')),
-              ),
-              Container(
-                height: 600,
-                color: Colors.yellowAccent,
-                child: const Center(child: Text('Not Implemented')),
-              ),
-              Container(
-                height: 600,
-                color: Colors.orangeAccent,
-                child: const Center(child: Text('Not Implemented')),
-              )
-            ],
+          thickness: 5, //width of scrollbar
+          radius: const Radius.circular(10), //corner radius of scrollbar
+          child: SingleChildScrollView(
+            controller: _controller,
+            child: const Column(
+              children: [
+                SizedBox(
+                  height: 300,
+                  child: Center(child: Text('Graph will be here')),
+                ),
+                SizedBox(
+                  height: 600,
+                  child: Center(child: Text('Not Implemented')),
+                ),
+              ],
+            ),
           ),
         ),
       ),
