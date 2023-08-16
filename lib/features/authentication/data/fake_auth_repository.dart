@@ -35,7 +35,6 @@ class FakeAuthRepository extends AuthRepository {
   @override
   Future<void> signIn(String email, String password) async {
     await delay(isDelay);
-    debugPrint('signIn-in fakeAuthRepo');
 
     for (final user in _users) {
       if (user.email == email) {
@@ -54,7 +53,6 @@ class FakeAuthRepository extends AuthRepository {
   Future<void> signOut() async {
     await delay(isDelay);
     debugPrint('signOut-in fakeAuthRepo');
-
     _authState.value = null;
   }
 
