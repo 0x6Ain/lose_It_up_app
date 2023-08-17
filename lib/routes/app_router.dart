@@ -4,9 +4,9 @@ import 'package:lose_it_up_app/app.dart';
 import 'package:lose_it_up_app/common/entire_layout/scaffold_with_nested_navigation.dart';
 import 'package:lose_it_up_app/features/authentication/data/fake_auth_repository.dart';
 
-import 'package:lose_it_up_app/features/authentication/presentation/account/account_screen.dart';
+import 'package:lose_it_up_app/features/authentication/presentation/user/user_screen.dart';
 import 'package:lose_it_up_app/features/authentication/presentation/sign_in/sign_in_screen.dart';
-import 'package:lose_it_up_app/features/authentication/settings/presenatation/setting_screen.dart';
+import 'package:lose_it_up_app/features/authentication/settings/account/presentatation/account_screen.dart';
 import 'package:lose_it_up_app/features/meals/presentation/meal_list_screen.dart';
 import 'package:lose_it_up_app/routes/go_router_refresh_stream.dart';
 import 'package:lose_it_up_app/routes/not_found_screen.dart';
@@ -16,6 +16,7 @@ part 'app_router.g.dart';
 
 enum AppRoute {
   home,
+  user,
   account,
   signIn,
   setting,
@@ -38,11 +39,12 @@ GoRouter goRouter(GoRouterRef ref) {
     redirect: (context, state) {
       final isLoggedIn = authRepository.currentUser != null;
       if (isLoggedIn) {
-        if (state.matchedLocation == '/signIn') {
+        print(state.matchedLocation);
+        if (state.matchedLocation.contains('signIn')) {
           return '/';
         }
       } else {
-        if (state.matchedLocation.contains('/account')) {
+        if (state.matchedLocation.contains('account')) {
           return '/signIn';
         }
       }
@@ -91,17 +93,17 @@ GoRouter goRouter(GoRouterRef ref) {
             routes: [
               // top route inside branch
               GoRoute(
-                  path: '/account',
-                  name: AppRoute.account.name,
+                  path: '/user',
+                  name: AppRoute.user.name,
                   pageBuilder: (context, state) => const NoTransitionPage(
-                        child: AccountScreen(),
+                        child: UserScreen(),
                       ),
                   routes: [
                     GoRoute(
-                      path: 'setting',
-                      name: AppRoute.setting.name,
+                      path: 'account',
+                      name: AppRoute.account.name,
                       pageBuilder: (context, state) => const NoTransitionPage(
-                        child: SettingScreen(),
+                        child: AccountScreen(),
                       ),
                     ),
                   ]),

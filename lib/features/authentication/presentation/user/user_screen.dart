@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lose_it_up_app/features/authentication/presentation/account/user_account_card.dart';
+import 'package:lose_it_up_app/features/authentication/data/fake_auth_repository.dart';
+import 'package:lose_it_up_app/features/authentication/presentation/user/user_account_card.dart';
 import 'package:lose_it_up_app/features/authentication/settings/presenatation/setting_list_modal.dart';
 import 'package:lose_it_up_app/routes/app_router.dart';
 
-class AccountScreen extends StatelessWidget {
-  const AccountScreen({super.key});
+class UserScreen extends ConsumerWidget {
+  const UserScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final user = ref.watch(authRepositoryProvider).currentUser;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Account'),
+        title: const Text('User'),
         actions: [
           IconButton(
             onPressed: () {},
@@ -41,12 +44,12 @@ class AccountScreen extends StatelessWidget {
           )
         ],
       ),
-      body: const Scrollbar(
+      body: Scrollbar(
         child: SingleChildScrollView(
           child: Column(
             children: [
-              UserAccountWidget(),
-              SizedBox(
+              UserAccountWidget(user: user),
+              const SizedBox(
                 height: 600,
                 child: Center(child: Text('Not Implemented')),
               ),

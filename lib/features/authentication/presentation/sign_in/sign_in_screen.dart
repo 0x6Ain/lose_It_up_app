@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lose_it_up_app/common/alert_dialogs.dart';
 import 'package:lose_it_up_app/common/button_layout/base_icon_text_button.dart';
 import 'package:lose_it_up_app/common/button_layout/base_text_button.dart';
 import 'package:lose_it_up_app/constants/app_sizes.dart';
@@ -53,7 +54,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen> with SignInValidato
       final result = await signInController.submit(
           email: email, password: password, signInFormType: SignInFormType.email);
       if (result) {
-        context.goNamed(AppRoute.home.name);
+        // context.goNamed(AppRoute.home.name);
       }
     }
   }
@@ -114,37 +115,31 @@ class _SignInScreenState extends ConsumerState<SignInScreen> with SignInValidato
                         validator: (password) =>
                             _isSubmitted ? passwordErrorText(password ?? '') : null,
                       ),
-                      gapH32,
-                      //Login button
-                      BaseTextButton(
-                        text: 'Login',
-                        isLoading: state.isLoading,
-                        onPressed: !_isButtonEnabled ? null : _submitWithEmailandPassword,
-                      ),
                     ],
                   ),
                 ),
               ),
             ),
             gapH32,
+            //Login button
+            BaseTextButton(
+              text: 'Login',
+              isLoading: state.isLoading,
+              onPressed: !_isButtonEnabled ? null : _submitWithEmailandPassword,
+            ),
+            gapH32,
             //Social login google button
             BaseIconTextButton(
               icon: "assets/icons/google_logo.png",
               text: 'Sign in with Google',
-              onPressed: () {
-                //TODO:
-                print('Sign in with Google');
-              },
+              onPressed: () => showNotImplementedAlertDialog(context: context),
             ),
             gapH12,
             //Social login apple button
             BaseIconTextButton(
               icon: "assets/icons/apple_logo.png",
               text: 'Sign in with Apple',
-              onPressed: () {
-                //TODO:
-                print('Sign in with Apple');
-              },
+              onPressed: () => showNotImplementedAlertDialog(context: context),
             ),
           ]),
         ),
