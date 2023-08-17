@@ -47,9 +47,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text(ThemeMode.system == ThemeMode.light ? 'light' : 'dark'),
+        title: const Text('Lose it up'),
       ),
       body: RefreshIndicator(
         triggerMode: RefreshIndicatorTriggerMode.anywhere,
@@ -65,15 +64,25 @@ class _HomeScreenState extends State<HomeScreen> {
           radius: const Radius.circular(10), //corner radius of scrollbar
           child: SingleChildScrollView(
             controller: _controller,
-            child: const Column(
+            child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 300,
                   child: Center(child: Text('Graph will be here')),
                 ),
-                SizedBox(
-                  height: 600,
-                  child: Center(child: Text('Not Implemented')),
+                Container(
+                  color: Colors.amberAccent,
+                  child: const SizedBox(
+                    height: 600,
+                    child: Center(child: Text('Not Implemented')),
+                  ),
+                ),
+                Container(
+                  color: Colors.black,
+                  child: const SizedBox(
+                    height: 600,
+                    child: Center(child: Text('Not Implemented')),
+                  ),
                 ),
               ],
             ),

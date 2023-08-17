@@ -17,8 +17,7 @@ class ScaffoldWithNavigationBar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      extendBody: true,
-      body: SafeArea(child: body),
+      body: body,
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: onDestinationSelected,
         selectedIndex: selectedIndex,
