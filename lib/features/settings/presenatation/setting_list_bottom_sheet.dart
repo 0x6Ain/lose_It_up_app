@@ -5,8 +5,8 @@ import 'package:lose_it_up_app/constants/app_sizes.dart';
 import 'package:lose_it_up_app/common/tappabale_list_item.dart';
 import 'package:lose_it_up_app/routes/app_router.dart';
 
-class SettingListModal extends StatelessWidget {
-  const SettingListModal({super.key});
+class SettingListBottomSheet extends StatelessWidget {
+  const SettingListBottomSheet({super.key});
 
   @override
   Widget build(BuildContext context) {

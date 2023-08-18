@@ -20,6 +20,7 @@ class FakeAuthRepository extends AuthRepository {
   // List to keep track of all user accounts
   final List<User> _users = [kUser];
   User? get currentUser => _authState.value;
+
   @override
   Future<User?> fetchUser() {
     delay(isDelay);
@@ -28,9 +29,7 @@ class FakeAuthRepository extends AuthRepository {
   }
 
   @override
-  Stream<User?> authStateChanges() {
-    return _authState.stream;
-  }
+  Stream<User?> authStateChanges() => _authState.stream;
 
   @override
   Future<void> signIn(String email, String password) async {
@@ -80,6 +79,13 @@ class FakeAuthRepository extends AuthRepository {
   }
 
   void dispose() => _authState.close();
+
+  @override
+  Future<void> delete() async {
+    await delay(isDelay);
+    _users.remove(currentUser);
+    _authState.value = null;
+  }
 }
 
 @Riverpod(keepAlive: true)

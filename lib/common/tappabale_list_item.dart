@@ -19,11 +19,12 @@ class TappableListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      height: 45.0,
-      child: GestureDetector(
-        onTap: onPressed,
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: onPressed,
+      child: SizedBox(
+        width: double.infinity,
+        height: 45.0,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(

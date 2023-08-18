@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lose_it_up_app/features/authentication/data/fake_auth_repository.dart';
-import 'package:lose_it_up_app/features/authentication/presentation/user/user_account_card.dart';
-import 'package:lose_it_up_app/features/authentication/settings/presenatation/setting_list_modal.dart';
+import 'package:lose_it_up_app/features/authentication/presentation/user/user_card.dart';
+import 'package:lose_it_up_app/features/settings/presenatation/setting_list_bottom_sheet.dart';
 import 'package:lose_it_up_app/routes/app_router.dart';
 
 class UserScreen extends ConsumerWidget {
@@ -35,7 +35,7 @@ class UserScreen extends ConsumerWidget {
                       top: Radius.circular(10.0),
                     ),
                   ),
-                  builder: (_) => const SettingListModal());
+                  builder: (_) => const SettingListBottomSheet());
               if (result != null) {
                 context.goNamed(result.name);
               }
@@ -48,7 +48,7 @@ class UserScreen extends ConsumerWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              UserAccountWidget(user: user),
+              UserCard(user: user),
               const SizedBox(
                 height: 600,
                 child: Center(child: Text('Not Implemented')),

@@ -6,8 +6,8 @@ import 'package:lose_it_up_app/features/authentication/domain/user.dart';
 import 'package:lose_it_up_app/localization/string_hardcoded.dart';
 import 'package:lose_it_up_app/routes/app_router.dart';
 
-class UserAccountWidget extends StatelessWidget {
-  const UserAccountWidget({super.key, this.user});
+class UserCard extends StatelessWidget {
+  const UserCard({super.key, this.user});
   final User? user;
 
   @override
