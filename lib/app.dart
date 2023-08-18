@@ -1,31 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lose_it_up_app/routes/app_router.dart';
+import 'package:lose_it_up_app/utils/theme_state.dart';
+import 'package:lose_it_up_app/utils/themes.dart';
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final themeState = ref.watch(themeStateProvider);
+    final goRouter = ref.watch(goRouterProvider);
     return MaterialApp.router(
-        routerConfig: goRouter,
-        debugShowCheckedModeBanner: false,
-        restorationScopeId: 'app',
-        // onGenerateTitle: (BuildContext context) => 'My Shop'.hardcoded,
-        theme: ThemeData(
-          useMaterial3: true,
-          primarySwatch: Colors.grey,
-          appBarTheme: const AppBarTheme(
-            backgroundColor: Colors.black,
-            foregroundColor: Colors.white,
-            elevation: 0,
-          ),
-          elevatedButtonTheme: ElevatedButtonThemeData(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.black, // background (button) color
-              foregroundColor: Colors.white, // foreground (text) color
-            ),
-          ),
-        ));
+      routerConfig: goRouter,
+      debugShowCheckedModeBanner: false,
+      restorationScopeId: 'app',
+      // onGenerateTitle: (BuildContext context) => 'My Shop'.hardcoded,
+      theme: Themes.lightTheme,
+      darkTheme: Themes.darkTheme,
+      themeMode: themeState,
+    );
   }
 }
 
@@ -53,39 +47,45 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text('Home'),
-        // backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+        title: const Text('Lose it up'),
       ),
-      body: Scrollbar(
-        controller: _controller,
-        thickness: 5, //width of scrollbar
-        radius: const Radius.circular(10), //corner radius of scrollbar
-        child: SingleChildScrollView(
+      body: RefreshIndicator(
+        triggerMode: RefreshIndicatorTriggerMode.anywhere,
+        color: Colors.blue,
+        edgeOffset: 40.0,
+        onRefresh: () async {
+          print('occuer');
+          return;
+        },
+        child: Scrollbar(
           controller: _controller,
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 300,
-                child: Center(child: Text('Graph will be here')),
-              ),
-              Container(
-                height: 600,
-                color: Colors.redAccent,
-                child: const Center(child: Text('Not Implemented')),
-              ),
-              Container(
-                height: 600,
-                color: Colors.yellowAccent,
-                child: const Center(child: Text('Not Implemented')),
-              ),
-              Container(
-                height: 600,
-                color: Colors.orangeAccent,
-                child: const Center(child: Text('Not Implemented')),
-              )
-            ],
+          thickness: 5, //width of scrollbar
+          radius: const Radius.circular(10), //corner radius of scrollbar
+          child: SingleChildScrollView(
+            controller: _controller,
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 300,
+                  child: Center(child: Text('Graph will be here')),
+                ),
+                Container(
+                  color: Colors.amberAccent,
+                  child: const SizedBox(
+                    height: 600,
+                    child: Center(child: Text('Not Implemented')),
+                  ),
+                ),
+                Container(
+                  color: Colors.black,
+                  child: const SizedBox(
+                    height: 600,
+                    child: Center(child: Text('Not Implemented')),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

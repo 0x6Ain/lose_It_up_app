@@ -145,3 +145,4 @@ app.*.symbols
 /config/
 .env
 pubspec.lock
+/dummy/

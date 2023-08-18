@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lose_it_up_app/localization/string_hardcoded.dart';
 
-class ScaffoldWithNavigationBar extends StatelessWidget {
+class ScaffoldWithNavigationBar extends ConsumerWidget {
   const ScaffoldWithNavigationBar({
     super.key,
     required this.body,
@@ -14,15 +15,13 @@ class ScaffoldWithNavigationBar extends StatelessWidget {
   final ValueChanged<int> onDestinationSelected;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      extendBody: true,
       body: body,
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: onDestinationSelected,
         selectedIndex: selectedIndex,
         indicatorColor: Colors.transparent,
-        backgroundColor: Colors.black.withOpacity(0.9),
         destinations: [
           NavigationDestination(
             label: 'Home'.hardcoded,
