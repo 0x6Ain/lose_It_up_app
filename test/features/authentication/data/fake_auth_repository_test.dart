@@ -107,6 +107,19 @@ void main() {
       expect(authRepository.currentUser, null);
       expect(authRepository.authStateChanges(), emits(null));
     });
+    test('currentUser is null after delete account', () async {
+      final authRepository = makeAuthRepository();
+      addTearDown(authRepository.dispose);
+      expect(authRepository.currentUser, null);
+      await authRepository.signUp(newUser.email, '12341236');
+      expect(authRepository.currentUser, newUser);
+      expect(authRepository.authStateChanges(), emits(newUser));
+
+      //when
+      await authRepository.delete();
+      expect(authRepository.currentUser, null);
+      expect(authRepository.authStateChanges(), emits(null));
+    });
     test('create user after dispose throws exception', () {
       final authRepository = makeAuthRepository();
       authRepository.dispose();
