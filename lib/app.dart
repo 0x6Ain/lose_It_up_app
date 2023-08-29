@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lose_it_up_app/routes/app_router.dart';
 import 'package:lose_it_up_app/utils/extension.dart';
@@ -52,6 +53,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // 키보드 입력 비활성화
+    SystemChannels.textInput.invokeMethod('TextInput.hide');
     return Scaffold(
       appBar: AppBar(
         title: Text(context.loc.appTitle),
