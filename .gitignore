@@ -146,3 +146,6 @@ app.*.symbols
 .env
 pubspec.lock
 /dummy/
+
+*.g.dart
+*.freezed.dart
