@@ -7,7 +7,7 @@ import 'package:lose_it_up_app/features/authentication/data/fake_auth_repository
 import 'package:lose_it_up_app/features/authentication/presentation/user/user_screen.dart';
 import 'package:lose_it_up_app/features/authentication/presentation/sign_in/sign_in_screen.dart';
 import 'package:lose_it_up_app/features/settings/account/presentatation/account_screen.dart';
-import 'package:lose_it_up_app/features/meals/presentation/meal_list_screen.dart';
+import 'package:lose_it_up_app/features/upload/presentation/upload_screen.dart';
 import 'package:lose_it_up_app/routes/go_router_refresh_stream.dart';
 import 'package:lose_it_up_app/routes/not_found_screen.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -21,6 +21,7 @@ enum AppRoute {
   signIn,
   setting,
   meal,
+  upload,
 }
 
 // private navigators
@@ -78,10 +79,10 @@ GoRouter goRouter(GoRouterRef ref) {
             routes: [
               // top route inside branch
               GoRoute(
-                path: '/meals',
-                name: AppRoute.meal.name,
+                path: '/upload',
+                name: AppRoute.upload.name,
                 pageBuilder: (context, state) => const NoTransitionPage(
-                  child: MealListScreen(),
+                  child: UploadScreen(),
                 ),
               ),
             ],
