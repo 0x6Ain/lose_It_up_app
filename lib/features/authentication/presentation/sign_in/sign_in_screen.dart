@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:lose_it_up_app/common/alert_dialogs.dart';
 import 'package:lose_it_up_app/common/button_layout/base_icon_text_button.dart';
 import 'package:lose_it_up_app/common/button_layout/base_text_button.dart';
@@ -9,7 +8,6 @@ import 'package:lose_it_up_app/constants/app_sizes.dart';
 import 'package:lose_it_up_app/features/authentication/presentation/sign_in/sign_in_controller.dart';
 import 'package:lose_it_up_app/features/authentication/presentation/sign_in/sign_in_validators.dart';
 import 'package:lose_it_up_app/features/authentication/presentation/sign_in/string_validators.dart';
-import 'package:lose_it_up_app/routes/app_router.dart';
 import 'package:lose_it_up_app/utils/async_value_ui.dart';
 
 class SignInScreen extends ConsumerStatefulWidget {
@@ -30,6 +28,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen> with SignInValidato
 
   bool _isSubmitted = false;
   bool _isButtonEnabled = false;
+  bool _passwordVisible = false;
 
   @override
   void dispose() {
@@ -104,12 +103,23 @@ class _SignInScreenState extends ConsumerState<SignInScreen> with SignInValidato
                       TextFormField(
                         controller: _passwordController,
                         decoration: InputDecoration(
-                          enabled: !state.isLoading,
-                          labelText: 'Password',
-                        ),
+                            enabled: !state.isLoading,
+                            labelText: 'Password',
+                            suffixIcon: IconButton(
+                                icon: Icon(
+                                  // Based on passwordVisible state choose the icon
+                                  _passwordVisible ? Icons.visibility : Icons.visibility_off,
+                                  color: Theme.of(context).primaryColorDark,
+                                ),
+                                onPressed: () {
+                                  // Update the state i.e. toogle the state of passwordVisible variable
+                                  setState(() {
+                                    _passwordVisible = !_passwordVisible;
+                                  });
+                                })),
                         autocorrect: false,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
-                        obscureText: true,
+                        obscureText: !_passwordVisible,
                         onEditingComplete: () => _node.unfocus(),
                         onChanged: (_) => setButtonState(),
                         validator: (password) =>
