@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lose_it_up_app/features/trackings/presentation/tracking_screen.dart';
 import 'package:lose_it_up_app/routes/app_router.dart';
-import 'package:lose_it_up_app/utils/extension.dart';
 import 'package:lose_it_up_app/utils/theme_state.dart';
 import 'package:lose_it_up_app/utils/themes.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -55,48 +54,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     // 키보드 입력 비활성화
     SystemChannels.textInput.invokeMethod('TextInput.hide');
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(context.loc.appTitle),
-      ),
-      body: RefreshIndicator(
-        triggerMode: RefreshIndicatorTriggerMode.anywhere,
-        color: Colors.blue,
-        edgeOffset: 40.0,
-        onRefresh: () async {
-          return;
-        },
-        child: Scrollbar(
-          controller: _controller,
-          thickness: 5, //width of scrollbar
-          radius: const Radius.circular(10), //corner radius of scrollbar
-          child: SingleChildScrollView(
-            controller: _controller,
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 300,
-                  child: Center(child: Text('Graph will be here')),
-                ),
-                Container(
-                  color: Colors.amberAccent,
-                  child: const SizedBox(
-                    height: 600,
-                    child: Center(child: Text('Not Implemented')),
-                  ),
-                ),
-                Container(
-                  color: Colors.black,
-                  child: const SizedBox(
-                    height: 600,
-                    child: Center(child: Text('Not Implemented')),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
+    return const TrackingScreen();
   }
 }

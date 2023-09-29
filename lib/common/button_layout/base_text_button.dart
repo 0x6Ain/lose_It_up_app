@@ -20,7 +20,7 @@ class BaseTextButton extends StatelessWidget {
       decoration: BoxDecoration(
           color: onPressed == null ? Colors.grey : Theme.of(context).colorScheme.background,
           // color: Colors.purple,
-          borderRadius: BorderRadius.circular(16.0)),
+          borderRadius: BorderRadius.circular(100.0)),
       child: TextButton(
         onPressed: onPressed,
         child: isLoading

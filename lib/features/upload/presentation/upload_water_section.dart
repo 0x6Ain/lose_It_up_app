@@ -23,7 +23,7 @@ class _UploadWaterSectionState extends State<UploadWaterSection> with TickerProv
   void initState() {
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 2000),
     );
     currentHeightOfWater = 0;
 
@@ -81,6 +81,7 @@ class _UploadWaterSectionState extends State<UploadWaterSection> with TickerProv
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              const Spacer(),
               const Text('Today drink water level'),
               Text('Your Goal level : ${goalOfWaterLevel.toStringAsFixed(2)} L'),
               Row(
@@ -97,6 +98,7 @@ class _UploadWaterSectionState extends State<UploadWaterSection> with TickerProv
                   ),
                 ],
               ),
+              const Spacer(),
               BaseTextButton(
                 text: 'Upload level',
                 isLoading: false,
@@ -135,9 +137,9 @@ class CurvePainter extends CustomPainter {
     final path = Path();
     final value = animation.value * 2 * pi;
 
-    final y1 = sin(value);
-    final y2 = sin(value + pi / 2);
-    final y3 = sin(value + pi);
+    final y1 = sin(value) / value;
+    final y2 = sin(value + pi / 2) / value;
+    final y3 = sin(value + pi) / value;
 
     final startPointY = size.height * (0.5 + 0.4 * y1);
     final controlPointY = size.height * (0.5 + 0.4 * y2);

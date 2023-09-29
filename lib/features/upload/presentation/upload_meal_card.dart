@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lose_it_up_app/features/meals/presentation/meal_search_delegate.dart';
-import 'package:lose_it_up_app/localization/string_hardcoded.dart';
+import 'package:lose_it_up_app/utils/extension.dart';
 
 enum MealSlot {
   breakfast,

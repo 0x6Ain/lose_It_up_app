@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lose_it_up_app/features/upload/presentation/upload_meal_section.dart';
 import 'package:lose_it_up_app/features/upload/presentation/upload_supplements_section.dart';
 import 'package:lose_it_up_app/features/upload/presentation/upload_water_section.dart';
-import 'package:lose_it_up_app/localization/string_hardcoded.dart';
+import 'package:lose_it_up_app/utils/extension.dart';
 
 class UploadScreen extends StatefulWidget {
   const UploadScreen({super.key});
