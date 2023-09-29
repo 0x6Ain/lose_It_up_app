@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:lose_it_up_app/localization/string_hardcoded.dart';
+import 'package:lose_it_up_app/utils/extension.dart';
 
 const kDialogDefaultKey = Key('dialog-default-key');
 

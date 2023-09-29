@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lose_it_up_app/localization/string_hardcoded.dart';
+import 'package:lose_it_up_app/utils/extension.dart';
 
 class ScaffoldWithNavigationBar extends ConsumerWidget {
   const ScaffoldWithNavigationBar({

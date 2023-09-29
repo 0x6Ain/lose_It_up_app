@@ -1,0 +1,6 @@
+{
+  "appTitle": "App Title",
+  "@appBarTitle": {
+    "description": "The title to be shown in the menu bar"
+  }
+}

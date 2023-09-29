@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lose_it_up_app/localization/string_hardcoded.dart';
+import 'package:lose_it_up_app/utils/extension.dart';
 
 class ScaffoldWithNavigationRail extends StatelessWidget {
   const ScaffoldWithNavigationRail({

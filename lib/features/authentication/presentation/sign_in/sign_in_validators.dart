@@ -1,5 +1,5 @@
 import 'package:lose_it_up_app/features/authentication/presentation/sign_in/string_validators.dart';
-import 'package:lose_it_up_app/localization/string_hardcoded.dart';
+import 'package:lose_it_up_app/utils/extension.dart';
 
 mixin SignInValidators {
   final StringValidator emailSubmitValidator = EmailSubmitRegexValidator();
