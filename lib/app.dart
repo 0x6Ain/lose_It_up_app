@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lose_it_up_app/routes/app_router.dart';
+import 'package:lose_it_up_app/utils/extension.dart';
 import 'package:lose_it_up_app/utils/theme_state.dart';
 import 'package:lose_it_up_app/utils/themes.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MyApp extends ConsumerWidget {
   const MyApp({super.key});
@@ -12,6 +15,9 @@ class MyApp extends ConsumerWidget {
     final themeState = ref.watch(themeStateProvider);
     final goRouter = ref.watch(goRouterProvider);
     return MaterialApp.router(
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      locale: const Locale('ko'),
       routerConfig: goRouter,
       debugShowCheckedModeBanner: false,
       restorationScopeId: 'app',
@@ -48,14 +54,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Lose it up'),
+        title: Text(context.loc.appTitle),
       ),
       body: RefreshIndicator(
         triggerMode: RefreshIndicatorTriggerMode.anywhere,
         color: Colors.blue,
         edgeOffset: 40.0,
         onRefresh: () async {
-          print('occuer');
           return;
         },
         child: Scrollbar(

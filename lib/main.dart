@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:lose_it_up_app/app.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

@@ -5,7 +5,7 @@ import 'package:lose_it_up_app/common/tappabale_list_item.dart';
 import 'package:lose_it_up_app/features/authentication/data/fake_auth_repository.dart';
 import 'package:lose_it_up_app/features/settings/account/presentatation/account_screen_controller.dart';
 
-import 'package:lose_it_up_app/localization/string_hardcoded.dart';
+import 'package:lose_it_up_app/utils/extension.dart';
 import 'package:lose_it_up_app/utils/theme_state.dart';
 
 class AccountScreen extends ConsumerWidget {

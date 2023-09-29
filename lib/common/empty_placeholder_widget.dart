@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lose_it_up_app/common/primary_button.dart';
 import 'package:lose_it_up_app/constants/app_sizes.dart';
-import 'package:lose_it_up_app/localization/string_hardcoded.dart';
+import 'package:lose_it_up_app/utils/extension.dart';
 import 'package:lose_it_up_app/routes/app_router.dart';
 
 /// Placeholder widget showing a message and CTA to go back to the home screen.
