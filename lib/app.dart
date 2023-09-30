@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lose_it_up_app/routes/app_router.dart';
 import 'package:lose_it_up_app/utils/extension.dart';
