@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:lose_it_up_app/features/comments/presentation/comments_screen.dart';
 import 'package:lose_it_up_app/routes/app_router.dart';
 import 'package:lose_it_up_app/utils/extension.dart';
 import 'package:lose_it_up_app/utils/theme_state.dart';
@@ -70,9 +72,47 @@ class _HomeScreenState extends State<HomeScreen> {
             controller: _controller,
             child: Column(
               children: [
-                const SizedBox(
-                  height: 300,
-                  child: Center(child: Text('Graph will be here')),
+                InkWell(
+                  onTap: () async {
+                    await showModalBottomSheet(
+                      context: context,
+                      useRootNavigator: true,
+                      backgroundColor: Colors.red,
+                      isScrollControlled: true,
+                      useSafeArea: true,
+                      builder: (context) {
+                        return DraggableScrollableSheet(
+                          initialChildSize: 0.8,
+                          minChildSize: 0.8,
+                          maxChildSize: 1.0,
+                          expand: false,
+                          snap: true,
+                          snapAnimationDuration: const Duration(milliseconds: 300),
+                          shouldCloseOnMinExtent: false,
+                          builder: (_, controller) {
+                            return CommentsScreen(scrollController: controller);
+                            // return ListView.builder(
+                            //   shrinkWrap: true,
+                            //   itemCount: 15,
+                            //   controller: controller,
+                            //   itemBuilder: (context, index) {
+                            //     return const Card(
+                            //       child: SizedBox(
+                            //         height: 80,
+                            //         child: Text('comment list Item'),
+                            //       ),
+                            //     );
+                            //   },
+                            // );
+                          },
+                        );
+                      },
+                    );
+                  },
+                  child: const SizedBox(
+                    height: 300,
+                    child: Center(child: Text('Graph will be here')),
+                  ),
                 ),
                 Container(
                   color: Colors.amberAccent,

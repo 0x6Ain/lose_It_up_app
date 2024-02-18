@@ -6,6 +6,7 @@ import 'package:lose_it_up_app/features/authentication/data/fake_auth_repository
 
 import 'package:lose_it_up_app/features/authentication/presentation/user/user_screen.dart';
 import 'package:lose_it_up_app/features/authentication/presentation/sign_in/sign_in_screen.dart';
+import 'package:lose_it_up_app/features/comments/presentation/comments_screen.dart';
 import 'package:lose_it_up_app/features/settings/account/presentatation/account_screen.dart';
 import 'package:lose_it_up_app/features/meals/presentation/meal_list_screen.dart';
 import 'package:lose_it_up_app/routes/go_router_refresh_stream.dart';
@@ -21,6 +22,7 @@ enum AppRoute {
   signIn,
   setting,
   meal,
+  comments,
 }
 
 // private navigators
@@ -64,12 +66,18 @@ GoRouter goRouter(GoRouterRef ref) {
             routes: [
               // top route inside branch
               GoRoute(
-                path: '/',
-                name: AppRoute.home.name,
-                pageBuilder: (context, state) => const NoTransitionPage(
-                  child: HomeScreen(),
-                ),
-              ),
+                  path: '/',
+                  name: AppRoute.home.name,
+                  pageBuilder: (context, state) => const NoTransitionPage(
+                        child: HomeScreen(),
+                      ),
+                  routes: [
+                    // GoRoute(
+                    //   path: 'comments',
+                    //   name: AppRoute.comments.name,
+                    //   builder: (context, state) => const CommentsScreen(),
+                    // ),
+                  ]),
             ],
           ),
           // second branch (B)
